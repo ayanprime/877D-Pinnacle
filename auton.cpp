@@ -1,19 +1,13 @@
 #include "main.h"
 
-
-// =====================================
 // Robot Position
-// =====================================
 
 // Default testing position
+
 double robotX = 0;
 double robotY = 0;
 
-
-
-// =====================================
 // Angle Functions
-// =====================================
 
 double wrapAngle(double angle) {
     
@@ -33,12 +27,7 @@ double wrapAngle(double angle) {
 
 }
 
-
-
-// =====================================
 // GPS Coordinate Reading
-// =====================================
-
 // Call only when GPS is available
 
 void GetCoordinate() {
@@ -49,10 +38,7 @@ void GetCoordinate() {
 }
 
 
-
-// =====================================
 // Asterisk Drive Turning
-// =====================================
 
 void setTurn(double power) {
     
@@ -83,11 +69,7 @@ void stopDrive() {
 
 }
 
-
-
-// =====================================
 // PID Turn Controller
-// =====================================
 
 void turnToHeading(double target, double kP, double kI, double kD) {
     
@@ -112,9 +94,7 @@ void turnToHeading(double target, double kP, double kI, double kD) {
 
         error = wrapAngle(target - current);
 
-        // ==========================
         // Integral
-        // ==========================
 
         integral += error;
 
@@ -140,15 +120,11 @@ void turnToHeading(double target, double kP, double kI, double kD) {
 
         }
 
-        // ==========================
         // Derivative
-        // ==========================
 
         derivative = error - previousError;
 
-        // ==========================
         // PID Calculation
-        // ==========================
 
         double power = (error * kP) + (integral * kI) + (derivative * kD);
 
@@ -186,10 +162,8 @@ void turnToHeading(double target, double kP, double kI, double kD) {
         }
 
         setTurn(power);
-
-        // ==========================
+        
         // Settling Check
-        // ==========================
 
         if(fabs(error) < 0.3) {
             
@@ -215,11 +189,7 @@ void turnToHeading(double target, double kP, double kI, double kD) {
 
 }
 
-
-
-// =====================================
 // Turn To Coordinate
-// =====================================
 
 void turnToPoint(double targetX, double targetY, double kP, double kI, double kD) {
 
@@ -239,18 +209,12 @@ void turnToPoint(double targetX, double targetY, double kP, double kI, double kD
 
 }
 
-
-
-// =====================================
-// Example Autonomous
-// =====================================
+// Example Auto
 
 void LRQ() {
 
-    // =================================
     // Testing without GPS
     // Robot starts at 0,0
-    // =================================
 
     robotX = 0;
     robotY = 0;
@@ -262,9 +226,6 @@ void LRQ() {
 
     turnToPoint(30, 60, 0.8, 0, 0.5);
 
-
-
-    // =================================
     // Competition example:
     //
     // GetCoordinate();
@@ -276,6 +237,5 @@ void LRQ() {
     //     0,
     //     2.5
     // );
-    // =================================
 
 }
