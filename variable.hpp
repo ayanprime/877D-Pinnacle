@@ -7,3 +7,9 @@ extern bool lbmr;
 extern bool rfmr;
 extern bool rmmr;
 extern bool rbmr;
+
+extern int Level;
+extern int curLevel;
+extern bool levelReached;
+
+extern bool RCC;
