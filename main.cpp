@@ -35,6 +35,8 @@ void pre_auton(void) {
   GPS.calibrate();
   flipper.setPosition(0, degrees);
   flipper.setStopping(hold);
+  blueCont.setPosition(0, turns);
+  pinkCont.setPosition(0, turns);
 
   while(Competition.isFieldControl() && !Competition.isEnabled()) {
     display();
