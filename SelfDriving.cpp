@@ -25,3 +25,49 @@ void antiTip() {
     }
 
 }
+
+void findGoal() {
+
+
+
+
+}
+
+void levels() {
+
+    
+    if (RCC == true) {
+
+        if (levelReached == true) {
+
+            clutch.set(true);
+
+        }
+
+    } else {
+
+        if (levelReached == true) {
+
+            blueCont.stop();
+            pinkCont.stop();
+            blueCont.setMaxTorque(100, percent);
+            pinkCont.setMaxTorque(100, percent);
+            blueCont.setBrake(brake);
+            pinkCont.setBrake(brake);
+
+       } else {
+
+            if (Level > curLevel) {
+
+                blueCont.setBrake(coast);
+                pinkCont.setBrake(coast);
+                blueCont.setMaxTorque(0, percent);
+                pinkCont.setMaxTorque(0, percent);
+
+           }
+
+        }
+
+    }
+
+}
