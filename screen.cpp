@@ -205,6 +205,34 @@ void LMM() {
     
 }
 
+void SelfDrivingHeader() {
+
+    Brain.Screen.clearScreen(black);
+    Brain.Screen.setFont(mono20);
+    Brain.Screen.setFillColor("#e8710a");
+    Brain.Screen.setPenColor(white);
+    Brain.Screen.drawRectangle(0, 0, 480, 30);
+    Brain.Screen.printAt(170, 22, true, "SELF DRIVING");
+
+}
+
+void SelfDrivingReadouts() {
+
+    double gpsX = GPS.xPosition(inches);
+    double gpsY = GPS.yPosition(inches);
+    double error = hypot(curX - gpsX, curY - gpsY);
+
+    Brain.Screen.setFont(mono20);
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.setPenColor(white);
+
+    Brain.Screen.printAt(10, 155, true, "Expected X %7.1f Y %7.1f  ", curX, curY);
+    Brain.Screen.printAt(10, 180, true, "Real     X %7.1f Y %7.1f  ", gpsX, gpsY);
+    Brain.Screen.printAt(10, 205, true, "GPS      X %7.1f Y %7.1f q %3d ", GPS.xPosition(inches), GPS.yPosition(inches), (int)GPS.quality());
+    Brain.Screen.printAt(10, 230, true, "%-38s", selfDrivingDecision);
+
+}
+
 void G() {
     
     static const char* imageColors[] = {
@@ -452,6 +480,13 @@ void display() {
                 if (Brain.Screen.xPosition() <= 104 && Brain.Screen.xPosition() >= 24 && Brain.Screen.yPosition() <= 146 && Brain.Screen.yPosition() >= 94) {
 
                     devmode = 6;
+                    drawscreen = true;
+                    wait(0.3, sec);
+
+                } else if (Brain.Screen.xPosition() <= 368 && Brain.Screen.xPosition() >= 288 && Brain.Screen.yPosition() <= 146 && Brain.Screen.yPosition() >= 94) {
+
+                    devmode = 9;
+                    SelfDrivingHeader();
                     drawscreen = true;
                     wait(0.3, sec);
 
@@ -874,6 +909,11 @@ void display() {
                 sButtons();
                 
                 drawscreen = false;
+
+            } else if (devmode == 9) {
+
+                SelfDrivingReadouts();
+                wait(100, msec);
 
             } else if (devmode == 13) {
 
