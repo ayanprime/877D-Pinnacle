@@ -11,5 +11,11 @@ bool rbmr = false;
 int Level = 0;
 int curLevel = 0;
 bool levelReached = true;
+bool oClaw = true;
+
+double curX;
+double curY;
+double homeX;
+double homeY;
 
 bool RCC = true;
