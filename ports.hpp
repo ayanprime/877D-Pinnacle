@@ -26,7 +26,11 @@ extern motor intake;
 //Pneumatics
 extern digital_out outriggers;
 extern digital_out clutch;
+extern digital_out claw;
+
 
 //Sensors
 extern inertial inrtl;
 extern gps GPS;
+extern rotation fwdTrack;
+extern rotation sideTrack;
