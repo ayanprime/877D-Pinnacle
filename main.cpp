@@ -27,6 +27,19 @@ bool SELECTING = true;
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
 
+int screenLoop() {
+
+    while(true) {
+
+        display();
+        wait(20, msec);
+
+    }
+
+    return 0;
+
+}
+
 void pre_auton(void) {
 
   // All activities that occur before the competition starts
@@ -37,11 +50,10 @@ void pre_auton(void) {
   flipper.setStopping(hold);
   blueCont.setPosition(0, turns);
   pinkCont.setPosition(0, turns);
-
-  while(Competition.isFieldControl() && !Competition.isEnabled()) {
-    display();
-    wait(20, msec);
-  }
+  inrtl.setRotation(GPS.heading(), degrees);
+  GetCoordinate();
+  startOdometry();
+  task* screenTask = new task(screenLoop);
 
 }
 
@@ -58,7 +70,7 @@ void pre_auton(void) {
 void autonomous(void) {
   // ..........................................................................
   // Insert autonomous user code here.
-  LRQ();
+  Auto();
   // ..........................................................................
 }
 
