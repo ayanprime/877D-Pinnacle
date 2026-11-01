@@ -1,5 +1,22 @@
 #include "main.h"
 
+/*
+Self Drive Strategies
+
+Alliance Section:
+Get Pins and cups from home matchloader
+Sore Pin and Cup on nearest alliance goal
+Last 15 Sec, toggle if color not same and then protect
+
+Neutral Side Section:
+Find nearest pin or cup
+Score pin or cup
+Last 15 Sec, toggle if collor not same and then protect
+
+Neutral Middle Section:
+If tower too tall with other color then descore
+*/
+
 void antiTip() {
 
     if (inrtl.pitch() >= 38) {
