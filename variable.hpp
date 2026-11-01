@@ -11,5 +11,11 @@ extern bool rbmr;
 extern int Level;
 extern int curLevel;
 extern bool levelReached;
+extern bool oClaw;
+
+extern double curX;
+extern double curY;
+extern double homeX;
+extern double homeY;
 
 extern bool RCC;
